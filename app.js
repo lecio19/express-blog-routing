@@ -10,18 +10,30 @@ console.log('test')
 const express = require('express');
 const app = express();
 const port = 3000;
-const posts = require('./posts.js')
+const posts = require('./note/posts.js')
+const router = require('./routers/posts.js')
 
 app.use(express.static('public'));
 
 app.get("/", (req, res) => {
     res.send("SERVER DEL MIO BLOG")
 })
-
-app.get('/posts', (req, res) => {
+/*
+app.get('/note/posts', (req, res) => {
 
     res.json(posts)
 })
+
+app.get('/', (req, res) =>{
+    res.send('lista dei miei post')
+})
+
+app.get('/routers/posts', (req, res) =>{
+    
+    res.json(router)
+})*/
+
+app.use('/posts', router)
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
